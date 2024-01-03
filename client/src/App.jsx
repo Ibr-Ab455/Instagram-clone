@@ -1,12 +1,20 @@
-
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import Dashborad from './pages/Dashborad'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
 
 function App() {
   
 
   return (
     <>
-     <h1 className="bg-red-500">Hello</h1>
-       
+      <BrowserRouter>
+       <Routes>
+        <Route path='/' element={<Dashborad/>} />
+        <Route path='/signin' element={<SignIn/>} />
+        <Route path='/signup' element={<SignUp/>} />
+       </Routes>
+      </BrowserRouter>
     </>
   )
 }
