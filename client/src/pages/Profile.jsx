@@ -1,8 +1,10 @@
-
+import { Link } from "react-router-dom"
 
 function Profile() {
   return (
-    <div>Profile</div>
+    <div>
+      <h1>Hello</h1>
+    </div>
   )
 }
 

@@ -9,12 +9,12 @@ function Header() {
   return (
     <Navbar className=" w-[20%] h-[100vh] bg-[#191919] top-0 sticky">
       <div className="flex flex-col space-y-8">
-      <Link to="/" className="self-center whitesapce-nowrap">
+      <Link to="/dashborad" className="self-center whitesapce-nowrap">
         <h1 className="text-white text-2xl italic font-extrabold">Instagram</h1>
       </Link>
         <ul className="flex flex-col space-y-6 ml-2">
         
-          <Link to="/" className="flex space-x-3">
+          <Link to="/dashborad" className="flex space-x-3">
           <IoMdHome className="text-4xl text-white "/>
           <span className="text-[17px] pt-1 font-extrabold text-white">Home</span>
           </Link>
