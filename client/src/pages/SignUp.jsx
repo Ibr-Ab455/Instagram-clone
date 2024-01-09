@@ -1,12 +1,53 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react"
+import React, { useState } from "react"
 import Insta from '../../src/assets/images/insta.png'
-import { TextInput } from "flowbite-react"
-import { Link } from "react-router-dom"
+import { TextInput, Alert, Spinner } from "flowbite-react"
+import { Link, useNavigate } from "react-router-dom"
 import image1 from '../../src/assets/images/image-1.png'
 import image2 from '../../src/assets/images/image-2.png'
 
 function SignUp() {
+  
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({});
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false)
+  
+  const handlechange = (e) => {
+     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
+  };
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+ if(!formData.username || !formData.email || !formData.password){
+  return setErrorMessage('please fill out all fields');
+ }
+
+  try {
+    setLoading(true);
+    setErrorMessage(null)
+    const res = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify(formData)
+    });
+    const data = await res.json()
+     
+    if(data.success === false){
+      return setErrorMessage(data.message)
+    }
+    setLoading(false);
+    if(res.ok){
+      navigate('/signin')
+    }
+  } catch(error) {
+   setErrorMessage(error.message)
+   setLoading(false)
+  }
+ };
+
   return (
     <div className="min-h-screen  w-full  relative">
     <div className="fixed bg-gray-800 w-1 h-full top-0"></div>
@@ -19,20 +60,38 @@ function SignUp() {
         <div className="border-[#eee]   h-[90vh] px-3 w-[40%] border-2  rounded">
           <div>
           <h1 className="text-white mb-8 pt-4 text-2xl italic font-extrabold text-center">Instagram</h1>
-          <form className="flex flex-col gap-4">
-           <TextInput type="text" placeholder="Username" id="username" />
-           <TextInput type="text" placeholder="name@Example.com" id="email" />
-           <TextInput type="text" placeholder="Password" id="password" />
-           <button className="w-full bg-[#2B6AD0] p-2 rounded text-white">Register</button>
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+           <TextInput type="text" placeholder="Username" id="username" onChange={handlechange}/>
+           <TextInput type="email" placeholder="name@Example.com" id="email" onChange={handlechange}/>
+           <TextInput type="password" placeholder="Password" id="password" onChange={handlechange}/>
+           <button className="w-full bg-[#2B6AD0] p-2 rounded text-white" type="submit"
+           disabled={loading}>
+            { loading ? (
+                <>
+                <Spinner size='sm'/>
+                <span className="pl-3">loading...</span>
+                </>
+              ): (
+                'Register'
+               )}
+           </button>
           </form>
 
             <div className="mt-8 border-[#eee] bg-white p-3 rounded">
             <Link to="/signin">
-            Already have account?
+             Already have account?
              <span className="text-blue-500 pl-2">logg inn</span>
             </Link>
            </div>
           </div>
+         
+          {
+            errorMessage && (
+              <Alert className="mt-5" color='failure'>
+                {errorMessage}
+              </Alert>
+            )
+          }
        
         </div>
       </div>
