@@ -4,14 +4,17 @@ import { TextInput, Alert, Spinner } from "flowbite-react"
 import { Link, useNavigate } from "react-router-dom"
 import image1 from '../../src/assets/images/image-1.png'
 import image2 from '../../src/assets/images/image-2.png'
+import { signInStart, signInSuccess, signInFailure } from "../redux/api/UserSlice"
+import { useDispatch, useSelector } from "react-redux"
 
 function SignIn() {
   
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { loading, error: errorMessage } = useSelector(state => state.user);
 
   const [formData, setFormData] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false)
+ 
   
   const handlechange = (e) => {
      setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -21,12 +24,11 @@ function SignIn() {
   e.preventDefault();
 
  if(!formData.email || !formData.password){
-  return setErrorMessage('please fill out all fields');
+  return dispatch(signInFailure('please fill all the fields'));
  }
 
   try {
-    setLoading(true);
-    setErrorMessage(null)
+    dispatch(signInStart());
     const res = await fetch('/api/auth/signin', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json'},
@@ -35,15 +37,15 @@ function SignIn() {
     const data = await res.json()
      
     if(data.success === false){
-      return setErrorMessage(data.message)
+      dispatch(signInFailure(data.message))
     }
-    setLoading(false);
+  
     if(res.ok){
+      dispatch(signInSuccess(data))
       navigate('/dashborad')
     }
   } catch(error) {
-   setErrorMessage(error.message)
-   setLoading(false)
+    dispatch(signInFailure(error.message));
   }
  };
 
@@ -61,7 +63,7 @@ function SignIn() {
           <h1 className="text-white mb-8 pt-4 text-2xl italic font-extrabold text-center">Instagram</h1>
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
            <TextInput type="email" placeholder="name@Example.com" id="email" onChange={handlechange}/>
-           <TextInput type="********" placeholder="Password" id="password" onChange={handlechange}/>
+           <TextInput type="password" placeholder="******" id="password" onChange={handlechange}/>
            <button className="w-full bg-[#2B6AD0] p-2 rounded text-white" type="submit"
            disabled={loading}>
             { loading ? (

@@ -63,7 +63,7 @@ function SignUp() {
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
            <TextInput type="text" placeholder="Username" id="username" onChange={handlechange}/>
            <TextInput type="email" placeholder="name@Example.com" id="email" onChange={handlechange}/>
-           <TextInput type="password" placeholder="Password" id="password" onChange={handlechange}/>
+           <TextInput type="password" placeholder="******" id="password" onChange={handlechange}/>
            <button className="w-full bg-[#2B6AD0] p-2 rounded text-white" type="submit"
            disabled={loading}>
             { loading ? (
