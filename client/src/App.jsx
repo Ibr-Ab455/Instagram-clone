@@ -2,10 +2,10 @@ import { BrowserRouter,  Routes, Route} from 'react-router-dom'
 import Dashborad from './pages/Dashborad'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
-import Header from './components/Header'
 import Profile from './pages/Profile'
 import Post from './pages/Post'
 import Follow from './pages/Follow'
+import PrivateRoute from './components/PrivateRoute'
 
 function App() {
   
@@ -13,15 +13,20 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <div className='flex bg-[#191919]'>
-        <Header/>
+      <div className='flex bg-[#000]'>
+        
        <Routes>
-        <Route path='/dashborad' element={<Dashborad/>} />
+         
+         <Route element={<PrivateRoute/>} >
+         <Route path='/dashborad' element={<Dashborad/>} />
+         </Route>
+        
         <Route path='/profile' element={<Profile/>} />
         <Route path='/profile' element={<Post/>} />
         <Route path='/follow' element={<Follow/>} />
         <Route path='/signin' element={<SignIn/>} />
-        <Route path='/signup' element={<SignUp/>} />
+        <Route path='/' element={<SignUp/>} />
+        
        </Routes>
        </div>
       </BrowserRouter>

@@ -1,10 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react"
-import Insta from '../../src/assets/images/insta.png'
-import { TextInput, Alert, Spinner } from "flowbite-react"
+import {  Alert, Spinner } from "flowbite-react"
 import { Link, useNavigate } from "react-router-dom"
 import image1 from '../../src/assets/images/image-1.png'
 import image2 from '../../src/assets/images/image-2.png'
+import image8 from '../../src/assets/images/image_8.png'
+import image9 from '../../src/assets/images/image_9.png'
 
 function SignUp() {
   
@@ -49,22 +50,27 @@ function SignUp() {
  };
 
   return (
-    <div className="min-h-screen  w-full  relative">
-    <div className="fixed bg-gray-800 w-1 h-full top-0"></div>
-      <div className="mx-auto max-w-3xl flex  flex-col md:flex-row md:items-center">
+    <div className="bg-white w-full relative">
+      <div className="flex md:flex-row flex-col">
         {/* left */}
-        <div className="w-[55%]">
-         <img src={Insta} alt="Instgram" className="w-[60%]"/>
+        <div className="w-[80%]">
+         <img src={image8} alt="Instgram" className="w-full"/>
+    
         </div>
         {/*right */}
-        <div className="border-[#eee]   h-[90vh] px-3 w-[40%] border-2  rounded">
+          <div className="border-gray-100 p-4  w-[25%] absolute right-[21%] h-[90vh]   top-10 border-2 rounded">
           <div>
-          <h1 className="text-white mb-8 pt-4 text-2xl italic font-extrabold text-center">Instagram</h1>
+           <img src={image9} alt="logo" className="w-40 ml-12 cursor-pointer"/>
+         
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-           <TextInput type="text" placeholder="Username" id="username" onChange={handlechange}/>
-           <TextInput type="email" placeholder="name@Example.com" id="email" onChange={handlechange}/>
-           <TextInput type="password" placeholder="******" id="password" onChange={handlechange}/>
-           <button className="w-full bg-[#2B6AD0] p-2 rounded text-white" type="submit"
+           
+           <input type="text" placeholder="username" id="username" onChange={handlechange} className="rounded-sm text-[13px] py-2 outline-none"/>
+           
+           <input type="email" placeholder="name@Example.com" id="email" onChange={handlechange}/>
+          
+           <input type="password" placeholder="password" id="password" onChange={handlechange}/>
+          
+           <button className="w-full bg-[#405DE6] py-[6px] rounded text-white" type="submit"
            disabled={loading}>
             { loading ? (
                 <>
@@ -77,7 +83,7 @@ function SignUp() {
            </button>
           </form>
 
-            <div className="mt-8 border-[#eee] bg-white p-3 rounded">
+          <div className="mt-8 border-[#fff] bg-white p-3 rounded">
             <Link to="/signin">
              Already have account?
              <span className="text-blue-500 pl-2">logg inn</span>
@@ -92,14 +98,19 @@ function SignUp() {
               </Alert>
             )
           }
+
+          <div className="flex mt-[130px]   space-x-1">
+          <img src={image1} alt="image1" className="w-[100px] h-10"/>
+          <img src={image2} alt="image2" className="w-[100px] h-10"/>
+         </div>
        
         </div>
       </div>
-
-      <div className="flex my-10 mx-20 space-x-3">
-        <img src={image1} alt="image1" className="w-26 h-14"/>
-        <img src={image2} alt="image2" className="w-26 h-14"/>
-      </div>
+     
+     
+      <p className="text-[12px] text-gray-500 text-center mt-14">Meta About Blog Job Help API Privacy Cookie settings Conditions Places Instagram Lite </p>
+      <h3 className="text-center text-gray-500 text-sm my-2">© 2024 Instagram from Meta</h3>
+    
     </div>
   )
 }
