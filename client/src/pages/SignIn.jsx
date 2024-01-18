@@ -44,7 +44,7 @@ function SignIn() {
   
     if(res.ok){
       dispatch(signInSuccess(data))
-      navigate('/dashborad')
+      navigate('/')
     }
   } catch(error) {
     dispatch(signInFailure(error.message));
@@ -55,12 +55,12 @@ function SignIn() {
     <div className="bg-white w-full relative">
       <div className="flex md:flex-row flex-col">
         {/* left */}
-        <div className="w-[80%]">
+        <div className="lg:w-[80%] hidden lg:inline">
          <img src={image8} alt="Instgram" className="w-full"/>
     
         </div>
         {/*right */}
-          <div className="border-gray-100 p-4  w-[25%] absolute right-[21%] h-[80vh]   top-10 border-2 rounded">
+          <div className="border-gray-100 p-4  lg:w-[25%] w-[] absolute lg:right-[21%] right-[30%] h-[80vh] top-10 border-2 rounded">
           <div>
            <img src={image9} alt="logo" className="w-40 ml-12 cursor-pointer"/>
          
@@ -85,7 +85,7 @@ function SignIn() {
           </form>
 
           <div className="mt-8 border-[#fff] bg-white p-3 rounded">
-            <Link to="/">
+            <Link to="/signup">
              Dont Have an account?
              <span className="text-blue-500 pl-2">Register</span>
             </Link>
@@ -100,7 +100,7 @@ function SignIn() {
             )
           }
 
-          <div className="flex mt-[130px]   space-x-1">
+          <div className="flex lg:mt-[130px] mt-[130px]  space-x-1">
           <img src={image1} alt="image1" className="w-[100px] h-10"/>
           <img src={image2} alt="image2" className="w-[100px] h-10"/>
          </div>
@@ -109,7 +109,7 @@ function SignIn() {
       </div>
      
      
-      <p className="text-[12px] text-gray-500 text-center mt-14">Meta About Blog Job Help API Privacy Cookie settings Conditions Places Instagram Lite </p>
+      <p className="text-[12px] text-gray-500 text-center lg:mt-14 mt-[100%] md:mt-[60%]">Meta About Blog Job Help API Privacy Cookie settings Conditions Places Instagram Lite </p>
       <h3 className="text-center text-gray-500 text-sm my-2">© 2024 Instagram from Meta</h3>
     
     </div>

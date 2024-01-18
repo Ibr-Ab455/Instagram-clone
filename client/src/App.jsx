@@ -1,35 +1,35 @@
-import { BrowserRouter,  Routes, Route} from 'react-router-dom'
-import Dashborad from './pages/Dashborad'
+import { BrowserRouter as Router,  Routes, Route} from 'react-router-dom'
+
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
-import Profile from './pages/Profile'
-import Post from './pages/Post'
-import Follow from './pages/Follow'
 import PrivateRoute from './components/PrivateRoute'
+import Dashboard from './pages/Dashboard'
+import Profile from './pages/Profile'
 
 function App() {
   
 
   return (
     <>
-      <BrowserRouter>
-      <div className='flex bg-[#000]'>
-        
-       <Routes>
-         
-         <Route element={<PrivateRoute/>} >
-         <Route path='/dashborad' element={<Dashborad/>} />
+      <Router>
+      
+        <Routes>
+           
+          <Route element={<PrivateRoute/>} >
+          <Route path='/' element={<Dashboard/>}/>
          </Route>
         
-        <Route path='/profile' element={<Profile/>} />
-        <Route path='/profile' element={<Post/>} />
-        <Route path='/follow' element={<Follow/>} />
-        <Route path='/signin' element={<SignIn/>} />
-        <Route path='/' element={<SignUp/>} />
         
-       </Routes>
-       </div>
-      </BrowserRouter>
+         <Route path='/signin' element={<SignIn/>} />
+         <Route path='/signup' element={<SignUp/>} />
+        
+       
+        <Route path='/profile'  element={<Profile/>} />
+        
+        </Routes>
+
+       </Router>
+      
     
     
     </>
