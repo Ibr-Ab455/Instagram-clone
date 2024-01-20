@@ -3,6 +3,7 @@ import bcryptjs from 'bcryptjs'
 import { errorHandler } from '../utlis/error.js'
 import jwt from 'jsonwebtoken';
 
+
 export const signup = async (req, res, next) => {
  const { fullname, username, email, password } = req.body
 
@@ -41,7 +42,7 @@ export const signin = async (req, res, next) => {
   }
 
   const token = jwt.sign(
-    { id: validUser.id, }, process.env.JWT_SECRET,);
+    { id: validUser.id, }, process.env.JWT_SECRET);
 
     const { password: pass, ...rest} = validUser._doc;
     res.status(200).cookie('access_token', token, {
