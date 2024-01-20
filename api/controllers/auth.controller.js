@@ -4,14 +4,14 @@ import { errorHandler } from '../utlis/error.js'
 import jwt from 'jsonwebtoken';
 
 export const signup = async (req, res, next) => {
- const { username, email, password } = req.body
+ const { fullname, username, email, password } = req.body
 
- if(!username || !email || !password || username === "" || email === "" || password === ""){
+ if(!fullname || !username || !email || !password || fullname === "" || username === "" || email === "" || password === ""){
     next(errorHandler(400, 'All Fiels are required'))
  } 
  const hashedPassword = bcryptjs.hashSync(password, 10);
 
- const newUser = new User({username, email, password: hashedPassword, 
+ const newUser = new User({ fullname, username, email, password: hashedPassword, 
 });
   try{
     await newUser.save();
