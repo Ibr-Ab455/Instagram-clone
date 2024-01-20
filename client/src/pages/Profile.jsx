@@ -17,7 +17,6 @@ function Profile() {
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
 
-  console.log(imageFileUploadProgress, imageFileUploadError);
   const filePickerRef = useRef();
 
   const handleImage = (e) => {
@@ -77,10 +76,15 @@ function Profile() {
            {/* right */}
            <div className="col-span-3">
           <div className="flex items-center space-x-7">
-            <span className="text-gray-800 text-2xl mr-7 ">Ibrahim_ahm25</span>
-            <div className="cursor-pointer text-sm text-gray-700 font-semibold p-1 px-2 border border-gray-200 mr-4">
-              Edit profile
-            </div>
+            <span className="text-gray-800 text-2xl mr-7 ">{currentUser.username}</span>
+              
+             
+              <div className="cursor-pointer text-sm text-gray-700 font-semibold p-1 px-2 border border-gray-200 mr-4">
+              Create post
+              </div>
+          
+            
+           
             <CiSettings className="cursor-pointer h-6 w-6" />
           </div>
           <div className="mt-4 flex items-center ">
@@ -96,9 +100,9 @@ function Profile() {
             </div>
           </div>
           <div className="pt-5">
-            <p className="text-base font-semibold mr-2 ">{currentUser.username}</p>
+            <p className="text-base font-semibold mr-2 ">{currentUser.fullname}</p>
             <p className="text-base text-gray-400  font-normal mr-2 ">
-              Degital creator
+              Web Devloper
             </p>
             <p className="text-base font-normal mr-2 ">
              ‎احرص على ماينفعك واستعن بالله

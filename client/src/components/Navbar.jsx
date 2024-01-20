@@ -72,7 +72,7 @@ function Navbar() {
            }
 
             <button onClick={handleSignout} className="font-semibold text-blue-400 text-sm md:hidden inline">
-              Sign out
+             Logg ut
             </button>
            
          </div>

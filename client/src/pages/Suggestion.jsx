@@ -51,7 +51,7 @@ function Suggestion() {
             </div>
             
             <button onClick={handleSignout} className="font-semibold text-blue-400 text-sm">
-              Sign out
+              Logg ut
             </button>
           
           </div>
