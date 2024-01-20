@@ -12,11 +12,11 @@ function Post() {
         <div className='flex items-center p-5'>
         <img
               className="h-12 rounded-full border p-1 mr-3"
-              src="https://static.skillshare.com/uploads/users/350301760/user-image-large.jpg?753816048"
+              src="https://lh3.googleusercontent.com/a/ACg8ocJRZxeNSjtgbMEksCurIUa1xzA6b1NVpXdRENyZ3xv-1g=s432-c-no"
               alt="user-image"
             />
 
-           <p className="flex-1 font-bold">codewithsahand</p>
+           <p className="flex-1 font-bold">Ibrahim_ahm25</p>
 
            <svg
               xmlns="http://www.w3.org/2000/svg"

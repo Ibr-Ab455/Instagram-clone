@@ -1,25 +1,59 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { signoutSucess } from '../redux/api/UserSlice'
+import { useDispatch } from 'react-redux'
 
 function Suggestion() {
+
+   const dispatch = useDispatch();
+ 
+   const { currentUser } = useSelector(state => state.user)
+
+ const handleSignout = async () => {
+  try {
+    const res = await fetch('/api/signout', {
+      method: "POST",
+    });
+    const data = await res.json();
+    if(!res.ok){
+      console.log(data.message);
+    }
+    else{
+      dispatch(signoutSucess())
+    }
+  }
+  catch(error) {
+   console.log(error.message)
+  }
+ }
+
   return (
     <div>
      <div className='hidden md:inline-grid md:col-span-1'>
         <div className="fixed w-[380px]">
          {/* mini profile */}
           <div className="flex items-center justify-between mt-14 ml-10">
-            <img
-              src="https://static.skillshare.com/uploads/users/350301760/user-image-large.jpg?753816048"
+            <Link to="/profile">
+            <img src={currentUser.profile}
               alt="user-image"
-              className="h-16 rounded-full border p-[2px]"
+              className="h-16 rounded-full border p-[2px] cursor-pointer"
             />
+            </Link>
+           
             <div className="flex-1 ml-4">
-              <h2 className="font-bold">Ibrahim_Ah</h2>
+              <Link to="/profile">
+              <h2 className="font-bold cursor-pointer">{currentUser.username}</h2>
+              </Link>
+             
               <h3 className="text-sm text-gray-400">Welcome to instagram</h3>
             </div>
-            <button className="font-semibold text-blue-400 text-sm">
+            
+            <button onClick={handleSignout} className="font-semibold text-blue-400 text-sm">
               Sign out
             </button>
+          
           </div>
 
            <div className='pt-6 ml-10'>

@@ -6,13 +6,14 @@ import Post from './Post'
 import Navbar from '../components/Navbar'
 
 
+
 function Dashboard() {
   return (
     <div>
       <Navbar/>
        
         <div>
-      
+          
         <div className='grid grid-cols-1 md:grid-cols-3 p-2 max-w-5xl mx-auto'>
             <div className='col-span-2'>
             <TopUser/>
